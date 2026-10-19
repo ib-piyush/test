@@ -441,34 +441,34 @@ const page = () => {
     console.log(maxf2(arrF), 'jjj b');
     //nonrwsorhm
 
-    const arrnr = [1, 2, 3, 2, 4, 1, 2, 5, 3, 3, 3, 3, 2]
-    function nonr(arr) {
-        // arr.sort((a,b)=>a-b)
-        // console.log(arr);
-        let count = 0
-        let last = 0
+    // const arrnr = [1, 2, 3, 2, 4, 1, 2, 5, 3, 3, 3, 3, 2]
+    // function nonr(arr) {
+    //     // arr.sort((a,b)=>a-b)
+    //     // console.log(arr);
+    //     let count = 0
+    //     let last = 0
    
-        for (let i = 0; i < arr.length; i++) {
-            for (let j = 0; j < arr.length; j++) {
-                if (arr[j] === arr[i]) {
-                    count++
-                }
+    //     for (let i = 0; i < arr.length; i++) {
+    //         for (let j = 0; j < arr.length; j++) {
+    //             if (arr[j] === arr[i]) {
+    //                 count++
+    //             }
 
-            }
-            if (count === 1) {
+    //         }
+    //         if (count === 1) {
 
-                if (limit === 1) {
-                    return arr[i]
-                }
-                limit++
-            }
-            count = 0
+    //             if (limit === 1) {
+    //                 return arr[i]
+    //             }
+    //             limit++
+    //         }
+    //         count = 0
 
 
-        }
+    //     }
 
-    }
-    console.log(nonr(arrnr), 'hgjgfj');
+    // }
+    // console.log(nonr(arrnr), 'hgjgfj');
 
 
 }

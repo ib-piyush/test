@@ -1,45 +1,37 @@
 
-
 // @ts-nocheck
 const page = () => {
     let arr = [2, 4, 7, 8]
     let k = 2
 
-    function tmap(arr, mul) {
-
-
-        let tarray = []
+    function customMap(arr, mul) {
+        const newArray = []
         for (let index = 0; index < arr.length; index++) {
-            tarray.push(mul(arr[index]))
+            newArray.push(mul(arr[index]))
 
         }
-        return tarray
-
+        return newArray
     }
-    function multiply(value) {
-        let newValue = value * 2
-        return newValue
-
-
+    function mul(i) {
+        return i * 2
     }
-    console.log(tmap(arr, multiply));
 
-    function filters(arr, fil) {
-        let tarray = []
-        for (let index = 0; index < arr.length; index++) {
+    console.log(customMap(arr, mul));
 
+    let arr2 = [1, 2, 3, 4, 5, 6, 7]
 
-            if (fil(arr[index])) {
-                tarray.push(arr[index])
+    function filters(arr, condition) {
+        let newArray = []
+        for (let i = 0; i < arr.length; i++) {
+            if (condition(arr[i])) {
+                newArray.push(arr[i])
             }
 
         }
-        return tarray
-
-
+        return newArray
     }
-    function condition(value) {
-        if (value % 2 === 0) {
+    function condition(i) {
+        if (i % 2 === 0) {
             return true
 
         } else {
@@ -47,44 +39,115 @@ const page = () => {
         }
 
     }
-    console.log(filters(arr, condition), 'ggg');
+    console.log(filters(arr2, condition), 'ggg');
 
     function reducers(arr, sum) {
-        let acc = 0
-        for (let index = 0; index < arr.length; index++) {
-            acc = sum(arr[index], acc)
-
+        let acc = 0;
+        for (let i = 0; i < arr.length; i++) {
+            acc = sum(arr[i], acc)
         }
         return acc
     }
     function sum(value, acc) {
-
-        return value + acc
-
+        return acc += value
     }
-    console.log(reducers(arr, sum), 'ggg');
+    console.log(reducers(arr, sum), 'gggn');
 
     const arr1 = [3, 7, 1, 7, 9, 1, 7, 4, 3]
-    let maxSums = 0
-    let k2 = 3;
-    let windowSum = 0
-    let left = 0
 
-    function maxSum() {
-        for (let index = 0; index < k2; index++) {
-            windowSum += arr1[index]
+    function swindow(arr) {
+        let k = 3
+        let windowSum = 0
+        let maxSum = 0
+
+        for (let i = 0; i < k; i++) {
+            windowSum += arr[i]
         }
-         maxSums = windowSum
-        for (let index = k2; index < arr1.length; index++) {
-            windowSum += arr1[index]
-            windowSum -= arr1[index-k2]
-            maxSums = Math.max(windowSum,maxSums)
-           
+        maxSum = windowSum
+        for (let index = 3; index < arr.length; index++) {
+            windowSum += arr[index]
+            windowSum -= arr[index - k]
+            maxSum = Math.max(windowSum, maxSum)
+
         }
-        return maxSums
+        return maxSum
+    }
+    console.log(swindow(arr1), 'hgghx');
+
+    //merge two array after removing duplicates
+
+    const arrA = [1, 2, 3];
+    const arrB = [3, 4, 5];
+
+    const uniqueMerged = [... new Set([...arrA, ...arrB])]
+    console.log(uniqueMerged);
+
+    //merge two array after removing duplicates without 
+    function merge(a, b) {
+        const seen = new Set()
+        for (let i = 0; i < a.length; i++) {
+            if (!seen.has(a[i])) {
+                seen.add(a[i])
+
+            }
+
+        }
+        for (let i = 0; i < b.length; i++) {
+            if (!seen.has(b[i])) {
+                seen.add(b[i])
+
+            }
+
+        }
+        return [...seen]
+    }
+    console.log(merge(arrA, arrB));
+
+    // counter using closure
+    function counter() {
+        let count = 0
+        return {
+            increment: function () {
+                count++
+                return count
+            },
+            decrement: function () {
+                count--
+                return count
+
+            }
+
+        }
 
     }
-    console.log(maxSum(), 'hh');
+
+    let log = counter()
+    let log2 = counter()
+    console.log(log.increment());
+    console.log(log.decrement());
+    console.log(log.decrement());
+
+    console.log(log2.decrement());
+
+    //frequency count 
+
+    let arr3 = [1,2,3,3,4,6,8,2]
+    function frequency(arr) {
+        const map = new Map()
+        for(let i = 0;i<arr.length;i++){
+            if (map.has(arr[i])){
+                map.set(arr[i],(map.get(arr[i]) ||0) +1)
+            }else{
+                map.set(arr[i],1)
+            }
+        }
+        return [...map.values()]
+        
+    }
+    console.log(frequency(arr3));
+    
+
+
 
 
 }
