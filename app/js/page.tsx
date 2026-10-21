@@ -455,5 +455,72 @@ const page = () => {
 
     console.log(reverseEachWordAndSen());
 
+    //find duplicates
+
+    function findDuplicates() {
+        let arr = [1, 2, 2, 3, 3, 5, 7, 8, 8, 8]
+        const map = new Map()
+        const newArr = []
+        for (let i = 0; i < arr.length; i++) {
+
+            map.set(arr[i], (map.get(arr[i]) || 0) + 1)
+            const count = map.get(arr[i])
+            if (count === 2) {
+                newArr.push(arr[i])
+            }
+
+        }
+        return newArr
+    }
+    console.log(findDuplicates());
+
+    function mergeSortedArray() {
+        const arr1 = [1, 3, 5, 7];
+        const arr2 = [2, 4, 6, 8, 10];
+        const newArr = []
+
+        let i = 0
+        let j = 0
+
+        while (i < arr1.length && j < arr2.length) {
+            if (arr1[i] < arr2[j]) {
+                newArr.push(arr1[i])
+                i++
+            } else {
+                newArr.push(arr2[j]);
+                j++;
+            }
+
+        }
+        while (j < arr2.length) {
+            newArr.push(arr2[j]);
+            j++;
+        }
+        while (i < arr1.length) {
+            newArr.push(arr[i])
+            i++
+        }
+        return newArr
+
+
+    }
+    console.log(mergeSortedArray());
+
+    function freqcount() {
+        const arr1 = [1, 3, 3 ,5, 7];
+
+        const map = new Map()
+
+        for (let i = 0; i < arr1.length; i++) {
+            map.set(arr1[i],(map.get(arr1[i])||0)+1)            
+        }
+        return map
+
+    }
+    console.log(freqcount());
+    
+
+
+
 }
 export default page;
