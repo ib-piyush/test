@@ -15,7 +15,7 @@ export function useThrottle<T extends (...args: any[]) => void>(
       }
     }
   }, [])
-
+  
 
   return (...args: Parameters<T>) => {
     const now = Date.now()

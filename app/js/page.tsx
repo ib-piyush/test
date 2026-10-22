@@ -507,17 +507,136 @@ const page = () => {
     console.log(mergeSortedArray());
 
     function freqcount() {
-        const arr1 = [1, 3, 3 ,5, 7];
+        const arr1 = [1, 3, 3, 5, 7];
 
         const map = new Map()
 
         for (let i = 0; i < arr1.length; i++) {
-            map.set(arr1[i],(map.get(arr1[i])||0)+1)            
+            map.set(arr1[i], (map.get(arr1[i]) || 0) + 1)
         }
         return map
 
     }
     console.log(freqcount());
+
+
+    //fibbo series using recursion with memoization
+    const memo = {}
+    function fib(n) {
+
+        if (n <= 1) {
+            return n;
+        }
+        if (memo[n] != undefined) {
+            return memo[n]
+        }
+        memo[n] = fib(n - 1) + fib(n - 2)
+        return memo[n]
+
+    }
+    function fiboseries(n) {
+        if (n <= 1) {
+            return n
+        }
+        const result = []
+        for (let i = 0; i < n; i++) {
+            result.push(fib(i))
+
+        }
+        return result
+
+    }
+
+    console.log(fiboseries(5), 'j');
+
+
+    //factorial
+
+    function factorial(n) {
+        if (n === 1 || n === 0) {
+            return 1
+        }
+        return n * factorial(n - 1)
+    }
+    console.log(factorial(5));
+
+    //flattenarray
+
+    const arr9 = [1, 5, [4, 9, [7, 8]]]
+
+    function flatArray(arr) {
+        const newArray = []
+        for (let i = 0; i < arr.length; i++) {
+            let currentIndex = arr[i]
+
+            if (Array.isArray(currentIndex)) {
+                let currentArray = flatArray(currentIndex)
+                for (let j = 0; j < currentArray.length; j++) {
+                    newArray.push(currentArray[j])
+                }
+
+            } else {
+                newArray.push(currentIndex)
+            }
+        }
+        return newArray
+
+    }
+    console.log(flatArray(arr9));
+
+    const me = {
+        name: "Piyush",
+        age: 25,
+        address: {
+            city: "Ahmedabad",
+            country: "India",
+            location: {
+                area: "Satellite",
+                pincode: 380015
+            }
+        },
+        skills: {
+            frontend: {
+                primary: "React",
+                secondary: "Next.js"
+            },
+            backend: "Node.js"
+        }
+    };
+    const newObj = {}
+    function flatObject(obj, parentKey = "") {
+        for(const key in obj){
+            let value = obj[key]
+            const fullKey = parentKey ===""?key :`${parentKey}.${key}` 
+            if (typeof value === 'object') {
+                flatObject(value,fullKey)
+                
+            }else{
+                newObj[fullKey]=value
+            }
+        }
+        return newObj
+
+    }
+    console.log(flatObject(me));
+
+    //clone 
+    const cloneObj = {}
+    function clone(me) {
+            for (const key in me ) {
+                const value = me[key]
+                if (typeof value === 'object') {
+                    cloneObj[key] = clone(value)
+                    
+                }else {
+                    cloneObj[key] = value
+                }
+             
+                
+            }
+            return cloneObj
+    }
+    console.log(clone(me));
     
 
 
